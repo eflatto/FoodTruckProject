@@ -51,8 +51,11 @@ public class FoodTruckApp {
 				// if the rating is out of bounds continue to the next iteration without adding
 				// to array
 				if (rating < 1 || rating > 5) {
+					while(rating<1||rating>5) {
 					System.out.println("Error: Rating must be between 1 and 5.");
-					continue;
+					rating = sc.nextInt();
+					}
+					sc.nextLine();
 				}
 
 				// Create new Foodtruck object with user inputted information and store in fleet
@@ -89,7 +92,7 @@ public class FoodTruckApp {
 			foodTrucks.listFoodtrucks(foodTrucks);
 			break;
 		case 2:
-			System.out.println(foodTrucks.averageRating(foodTrucks));
+			System.out.println("Average rating: "+foodTrucks.averageRating(foodTrucks)+"\n");
 			break;
 		case 3:
 			System.out.println(foodTrucks.highestRatedTruck(foodTrucks));
