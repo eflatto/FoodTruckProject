@@ -1,6 +1,5 @@
 package com.skilldistillery.foodtruck.app;
 
-import java.util.Iterator;
 import java.util.Scanner;
 
 import com.skilldistillery.foodtruck.entities.Foodtruck;
@@ -10,11 +9,11 @@ public class FoodTruckApp {
 	private Foodtruck[] fleet;
 
 	public static void main(String[] args) {
-		
+
 		// Initialize FoodTruckApp object and Scanner for user input
 		FoodTruckApp foodTrucks = new FoodTruckApp();
 		Scanner sc = new Scanner(System.in);
-		
+
 		// Initialize the fleet array with a size of 5
 		foodTrucks.fleet = new Foodtruck[5];
 
@@ -45,35 +44,36 @@ public class FoodTruckApp {
 				String foodType = sc.nextLine();
 				System.out.println();
 				System.out.print("Rating: (1-5) ");
-				
+
 				int rating = sc.nextInt();
 				sc.nextLine();
-				// check that rating is between 1 and 5 
-				//if the rating is out of bounds continue to the next iteration without adding to array
+				// check that rating is between 1 and 5
+				// if the rating is out of bounds continue to the next iteration without adding
+				// to array
 				if (rating < 1 || rating > 5) {
-				    System.out.println("Error: Rating must be between 1 and 5.");
-				    continue;
+					System.out.println("Error: Rating must be between 1 and 5.");
+					continue;
 				}
-				
-				
-				// Create new Foodtruck object with user inputted information and store in fleet array
+
+				// Create new Foodtruck object with user inputted information and store in fleet
+				// array
 				foodTrucks.fleet[i] = new Foodtruck(name, foodType, rating);
 
-				System.out.print("\nTruck Entered: "+foodTrucks.fleet[i]);
-				
+				System.out.print("\nTruck Entered: " + foodTrucks.fleet[i]);
 
 			}
 
 		} while (keepGoing);
 
 		boolean keepGoing1 = true;
-		
-		 // do-While Loop to display menu and allow user to select options
+
+		// do-While Loop to display menu and allow user to select options
 		do {
 			foodTrucks.menu(sc, foodTrucks);
 		} while (keepGoing1);
 
 	}
+
 	// Method to display menu options and call corresponding methods
 	private void menu(Scanner sc, FoodTruckApp foodTrucks) {
 		System.out.println("Please select an option: (1-4)\n");
@@ -111,38 +111,38 @@ public class FoodTruckApp {
 			}
 		}
 	}
+
 	// Method to calculate and return average rating of food trucks
 	private double averageRating(FoodTruckApp foodTrucks) {
 		double sum = 0;
-		int length=foodTrucks.fleet.length;
+		int length = foodTrucks.fleet.length;
 		for (int i = 0; i < fleet.length; i++) {
 			// Check if food truck object exists at current index
-			if(fleet[i]!= null)
-			sum += foodTrucks.fleet[i].getRating();
+			if (fleet[i] != null)
+				sum += foodTrucks.fleet[i].getRating();
 			else {
-				
+
 				length--;
 			}
 		}
 
-		double average = (double)(sum / length);
+		double average = (double) (sum / length);
 
 		return average;
 	}
-	 // Method to find and return highest-rated food truck
+
+	// Method to find and return highest-rated food truck
 	private Foodtruck highestRatedTruck(FoodTruckApp foodTrucks) {
-		
-	    Foodtruck topTruck = foodTrucks.fleet[0];
-	    for(int i =0;i<fleet.length;i++) {
-	    	if(fleet[i]!= null)
-	    	if(foodTrucks.fleet[i].getRating()>topTruck.getRating()) {
-	    		topTruck = foodTrucks.fleet[i];
-	    		
-	    	}
-	    }
-	    
-	   
-	    
-	    return topTruck;
+
+		Foodtruck topTruck = foodTrucks.fleet[0];
+		for (int i = 0; i < fleet.length; i++) {
+			if (fleet[i] != null)
+				if (foodTrucks.fleet[i].getRating() > topTruck.getRating()) {
+					topTruck = foodTrucks.fleet[i];
+
+				}
+		}
+
+		return topTruck;
 	}
 }
